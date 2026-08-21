@@ -50,34 +50,34 @@ public:
 
 // DP
 
-// class Solution {
-// public:
-//     string minWindow(string& s, string& t) {
-//         int n = s.size(), m = t.size();
-//         vector<int> dp(m, -1);
+class Solution {
+public:
+    string minWindow(string& s, string& t) {
+        int n = s.size(), m = t.size();
+        vector<int> dp(m, -1);
 
-//         int mini = INT_MAX, start = -1;
+        int mini = INT_MAX, start = -1;
 
-//         for (int i = 0; i < n; i++) {
-//             for (int j = m - 1; j >= 0; j--) {
-//                 if (s[i] == t[j]) {
-//                     if (j == 0)
-//                         dp[j] = i;
-//                     else if (dp[j - 1] != -1)
-//                         dp[j] = dp[j - 1];
-//                 }
-//             }
+        for (int i = 0; i < n; i++) {
+            for (int j = m - 1; j >= 0; j--) {
+                if (s[i] == t[j]) {
+                    if (j == 0)
+                        dp[j] = i;
+                    else if (dp[j - 1] != -1)
+                        dp[j] = dp[j - 1];
+                }
+            }
 
-//             if (dp[m - 1] != -1) {
-//                 int len = i - dp[m - 1] + 1;
+            if (dp[m - 1] != -1) {
+                int len = i - dp[m - 1] + 1;
 
-//                 if (len < mini) {
-//                     mini = len;
-//                     start = dp[m - 1];
-//                 }
-//             }
-//         }
+                if (len < mini) {
+                    mini = len;
+                    start = dp[m - 1];
+                }
+            }
+        }
 
-//         return start == -1 ? "" : s.substr(start, mini);
-//     }
-// };
+        return start == -1 ? "" : s.substr(start, mini);
+    }
+};
