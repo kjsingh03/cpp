@@ -8,15 +8,19 @@ struct ListNode {
 
 class Solution {
 public:
-    ListNode* middleNode(ListNode* head) {
-        
-        ListNode* slow = head, *fast = head;
+    ListNode* deleteMiddle(ListNode* head) {
+        if(!head || !head->next)
+            return nullptr;
 
-        while(fast && fast->next){
+        ListNode* slow = head, *fast=head->next;
+
+        while(fast && fast->next && fast->next->next){
             slow=slow->next;
             fast=fast->next->next;
         }
 
-        return slow;
+        slow->next=slow->next->next;
+
+        return head;
     }
 };
